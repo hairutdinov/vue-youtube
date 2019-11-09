@@ -15,7 +15,7 @@
               data-target="dropdown"
               ref="dropdown"
           >
-            USER NAME
+            {{name}}
             <i class="material-icons right">arrow_drop_down</i>
           </a>
 
@@ -46,6 +46,11 @@ export default {
     _interval: null,
     _dropdown: null
   }),
+  computed: {
+    name () {
+      return this.$store.getters.info.name
+    }
+  },
   methods: {
     toggleSidebar () {
       document.querySelector('.app-sidenav').classList.toggle('open')

@@ -1,17 +1,20 @@
 <template>
-  <div class="app-main-layout">
-    <Navbar />
-    <Sidebar />
-    <main class="app-content">
-      <div class="app-page">
-        <router-view />
-      </div>
-    </main>
+  <div>
+    <Loader v-if="loading" />
+    <div v-else class="app-main-layout">
+      <Navbar />
+      <Sidebar />
+      <main class="app-content">
+        <div class="app-page">
+          <router-view />
+        </div>
+      </main>
 
-    <div class="fixed-action-btn">
-      <router-link class="btn-floating btn-large blue" to="/record">
-        <i class="large material-icons">add</i>
-      </router-link>
+      <div class="fixed-action-btn">
+        <router-link class="btn-floating btn-large blue" to="/record">
+          <i class="large material-icons">add</i>
+        </router-link>
+      </div>
     </div>
   </div>
 </template>
@@ -21,7 +24,16 @@ import Navbar from '@/components/App/Navbar'
 import Sidebar from '@/components/App/Sidebar'
 export default {
   name: 'MainLayout',
-  components: { Navbar, Sidebar }
+  components: { Navbar, Sidebar },
+  data: () => ({
+    loading: true
+  }),
+  async mounted () {
+    if (!Object.keys(this.$store.getters.info).length) {
+      await this.$store.dispatch('fetchInfo')
+    }
+    this.loading = false
+  }
 }
 </script>
 
