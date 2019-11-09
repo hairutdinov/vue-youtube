@@ -51,8 +51,9 @@ export default {
       document.querySelector('.app-sidenav').classList.toggle('open')
       document.querySelector('.app-content').classList.toggle('full')
     },
-    logout () {
+    async logout () {
       console.log('Logout')
+      await this.$store.dispatch('logout')
       this.$router.push('/login?message=logout')
     }
   },

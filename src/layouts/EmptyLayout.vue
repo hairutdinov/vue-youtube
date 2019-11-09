@@ -5,8 +5,21 @@
 </template>
 
 <script>
+import messages from '@/utils/messages'
+
 export default {
-  name: 'EmptyLayout'
+  name: 'EmptyLayout',
+  computed: {
+    error () {
+      return this.$store.getters.error
+    }
+  },
+  watch: {
+    error (firebaseError) {
+      console.log(firebaseError)
+      this.$error(messages[firebaseError.code] || 'Что то пошло не так...')
+    }
+  }
 }
 </script>
 
