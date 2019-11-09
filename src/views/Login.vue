@@ -65,6 +65,10 @@ export default {
         this.$v.$touch()
         return
       }
+      let formData = {
+        email: this.email,
+        password: this.password
+      }
       this.$router.push('/')
     }
   }
