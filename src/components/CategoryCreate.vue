@@ -27,8 +27,8 @@
           <label for="limit">Лимит</label>
           <small class="helper-text invalid" v-if="!$v.limit.required && $v.limit.$dirty">Поле обязательно для заполнения</small>
           <small class="helper-text invalid" v-else-if="!$v.limit.minValue && $v.limit.$dirty">Минимальный лимит: <b>{{$v.limit.$params.minValue.min}}</b></small>
-
         </div>
+
         <button
             class="btn waves-effect waves-light"
             type="submit"
