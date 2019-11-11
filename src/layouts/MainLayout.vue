@@ -22,6 +22,7 @@
 <script>
 import Navbar from '@/components/App/Navbar'
 import Sidebar from '@/components/App/Sidebar'
+import messages from '@/utils/messages'
 export default {
   name: 'MainLayout',
   components: { Navbar, Sidebar },
@@ -33,6 +34,17 @@ export default {
       await this.$store.dispatch('fetchInfo')
     }
     this.loading = false
+  },
+  computed: {
+    error () {
+      return this.$store.getters.error
+    }
+  },
+  watch: {
+    error (firebaseError) {
+      console.log(firebaseError)
+      this.$error(messages[firebaseError.code] || 'Что то пошло не так...')
+    }
   }
 }
 </script>
