@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuelidate from 'vuelidate'
+import Paginate from 'vuejs-paginate'
 import App from './App.vue'
 import router from './router'
 import store from './store'
@@ -19,10 +20,14 @@ Vue.config.productionTip = false
 
 Vue.use(messagePlugin)
 Vue.use(Vuelidate)
+
 Vue.filter('dateFilter', dateFilter)
 Vue.filter('currencyFilter', currencyFilter)
+
 Vue.directive('tooltip', tooltipDirective)
+
 Vue.component('Loader', Loader)
+Vue.component('Paginate', Paginate)
 
 const firebaseConfig = {
   apiKey: "AIzaSyD26FoHpqMMSsvK3j5qWb4b0RCReHnyekU",
