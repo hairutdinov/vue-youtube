@@ -6,6 +6,7 @@ import router from './router'
 import store from './store'
 import dateFilter from '@/filters/date.filter'
 import currencyFilter from '@/filters/currency.filter'
+import localizeFilter from '@/filters/localize.filter'
 import tooltipDirective from '@/directives/tooltip.directive.js'
 import messagePlugin from '@/utils/message.plugin.js'
 import Loader from '@/components/App/Loader'
@@ -23,6 +24,7 @@ Vue.use(Vuelidate)
 
 Vue.filter('dateFilter', dateFilter)
 Vue.filter('currencyFilter', currencyFilter)
+Vue.filter('localizeFilter', localizeFilter)
 
 Vue.directive('tooltip', tooltipDirective)
 
@@ -43,6 +45,10 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig)
 
 let app
+
+String.prototype.capitalize = function () {
+  return this[0].toUpperCase() + this.slice(1)
+}
 
 firebase.auth().onAuthStateChanged(() => {
   if (!app) {
